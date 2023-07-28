@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View} from "react-native";
+import {FlatList, Text, View} from "react-native";
 import {useGetUsersQuery} from "../store/usersApi";
 import {useSelector, useDispatch} from "react-redux";
 import {saveUsers} from "../store/usersSlice";
@@ -11,13 +11,15 @@ const Users = () => {
     const users = useSelector(state => state.users.users)
 
     if (data) console.log(data.data)
-    useEffect(()=> {
+    useEffect(() => {
         if (data) dispatch(saveUsers(data.data))
     }, [])
 
     return (
         <View>
+           <FlatList data={users} renderItem={({user}) =>
 
+           }
         </View>
     );
 };
