@@ -1,21 +1,23 @@
-import React from 'react';
-import {Button, View} from "react-native";
+import React, {useEffect} from 'react';
+import {View} from "react-native";
 import {useGetUsersQuery} from "../store/usersApi";
 import {useSelector, useDispatch} from "react-redux";
 import {saveUsers} from "../store/usersSlice";
 
 
 const Users = () => {
-    const {data} = useGetUsersQuery()
-    const users = useSelector(state => state.users.users)
     const dispatch = useDispatch()
-    // console.log(users)
+    const {data} = useGetUsersQuery();
+    const users = useSelector(state => state.users.users)
+
+    if (data) console.log(data.data)
+    useEffect(()=> {
+        if (data) dispatch(saveUsers(data.data))
+    }, [])
 
     return (
         <View>
-            <Button title={`asd`} onPress={() => {
-                dispatch(saveUsers(data))
-            }}/>
+
         </View>
     );
 };

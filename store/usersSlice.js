@@ -3,16 +3,11 @@ import {createSlice} from "@reduxjs/toolkit";
 export const usersSlice = createSlice({
     name: "users",
     initialState: {
-        users: [
-            {
-                id: 1,
-                name: 'Maksim'
-            }
-        ]
+        users: []
     },
     reducers: {
         saveUsers(state, {payload}) {
-            console.log(payload)
+            state.users = payload
         }
     }
 })
