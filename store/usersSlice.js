@@ -12,7 +12,7 @@ export const usersSlice = createSlice({
     },
     reducers: {
         saveUsers(state, {payload}) {
-            console.log()
+            console.log(payload)
         }
     }
 })
