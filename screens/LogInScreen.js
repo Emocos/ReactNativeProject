@@ -1,40 +1,46 @@
-import {StatusBar} from 'expo-status-bar';
-import {Button, StyleSheet, TextInput, View} from 'react-native';
-import {useRef} from "react";
+import {Button, Pressable, Text, View} from 'react-native';
+import {useRef, useState} from "react";
 import axios from "axios";
+import {MyButton, MyInput, MyTitle} from "../styles/styles";
 
-export default function LoginScreen() {
-    const email = useRef();
-    const password = useRef()
+
+export default function LoginScreen({navigation}) {
+    const [email, setEmail] = useState('eve.holt@reqres.in');
+    const [password, setPassword] = useState('cityslicka');
+    const [access, setAccess] = useState(false);
     const login = async () => {
+        setAccess(false)
         await axios.post(`https://reqres.in/api/login`, {
-            email: email.current.value,
-            password: password.current.value
+            email: email,
+            password: password
         })
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error.response.data.error))
+            .then((response) => {
+                if (response) navigation.navigate(`Users`)
+            })
+            .catch((error) => {
+                setAccess(true)
+            })
+
     }
 
-
     return (
-        <View style={styles.container}>
-            <TextInput style={{borderStyle: 'solid', borderWidth: 1, borderColor: 'black', backgroundColor: 'white', width: 250, height: 35}}
-                       ref={email}/>
-            <TextInput style={{borderStyle: 'solid', borderWidth: 1, borderColor: 'black', backgroundColor: 'white', width: 250, height: 35}}
-                       secureTextEntry={true}
-                       ref={password}/>
-            <Button title={`test`} onPress={login}/>
-            <StatusBar style="auto"/>
+        <View style={{alignItems: 'center', paddingTop: 150}}>
+            <MyTitle>SignIn</MyTitle>
+            {access &&
+                <MyTitle style={{color: 'red', fontSize: 18, alignSelf: 'center'}}>Invalid login or password!</MyTitle>}
+
+            <MyInput
+                placeholder={'example@email.com'}
+                value={email}
+                onChange={(value) => setEmail(value)}
+            />
+            <MyInput
+                secureTextEntry={true}
+                placeholder={'Password'}
+                value={password}
+                onChange={(value) => setPassword(value)}
+            />
+            <MyButton onPress={login} style={{paddingRight: 15, paddingLeft: 15}}><Text style={{fontSize: 18}}>Login</Text></MyButton>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#1c1c1c',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 10
-    },
-});
