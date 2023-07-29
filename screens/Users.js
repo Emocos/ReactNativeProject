@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Button, FlatList, Pressable, SafeAreaView, Text, TouchableOpacity, View} from "react-native";
+import {ActivityIndicator, FlatList, Text, TouchableOpacity, View} from "react-native";
 import {useSelector, useDispatch} from "react-redux";
 import {deleteUser, saveUsers} from "../store/usersSlice";
-import {MyButton, MyContainer, MyInput, MyTitle} from "../styles/styles";
+import {MyButton, MyContainer, MyInput} from "../styles/styles";
 import UserCard from "../components/UserCard";
 import NewUserForm from "../components/NewUserForm";
 import axios from "axios";

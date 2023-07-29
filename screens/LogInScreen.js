@@ -1,5 +1,5 @@
-import {Button, Pressable, Text, View} from 'react-native';
-import {useRef, useState} from "react";
+import {Text, View} from 'react-native';
+import {useState} from "react";
 import axios from "axios";
 import {MyButton, MyInput, MyTitle} from "../styles/styles";
 

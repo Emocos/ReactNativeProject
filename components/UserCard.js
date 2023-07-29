@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, View} from "react-native";
-import {MyAvatar, MyImg, MyTitle} from "../styles/styles";
+import {View} from "react-native";
+import {MyAvatar, MyTitle} from "../styles/styles";
 
 const UserCard = ({name, last_name, avatar, email}) => {
     return (

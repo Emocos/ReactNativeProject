@@ -1,7 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text} from "react-native";
 import {MyButton, MyInput, MyTitle} from "../styles/styles";
-import img from '../assets/user.png'
 import {useDispatch} from "react-redux";
 import {addNewUser} from "../store/usersSlice";
 
